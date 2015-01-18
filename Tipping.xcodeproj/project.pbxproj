@@ -13,6 +13,7 @@
 		4535865D1A67FDB70073EFE8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4535865C1A67FDB70073EFE8 /* Images.xcassets */; };
 		453586601A67FDB70073EFE8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4535865E1A67FDB70073EFE8 /* LaunchScreen.xib */; };
 		4535866C1A67FDB70073EFE8 /* TippingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4535866B1A67FDB70073EFE8 /* TippingTests.swift */; };
+		45F449321A6949FE005163E2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F449311A6949FE005163E2 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		453586651A67FDB70073EFE8 /* TippingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TippingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4535866A1A67FDB70073EFE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4535866B1A67FDB70073EFE8 /* TippingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TippingTests.swift; sourceTree = "<group>"; };
+		45F449311A6949FE005163E2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				453586551A67FDB70073EFE8 /* AppDelegate.swift */,
+				45F449311A6949FE005163E2 /* SettingsViewController.swift */,
 				453586571A67FDB70073EFE8 /* ViewController.swift */,
 				453586591A67FDB70073EFE8 /* Main.storyboard */,
 				4535865C1A67FDB70073EFE8 /* Images.xcassets */,
@@ -161,6 +164,7 @@
 				TargetAttributes = {
 					4535864F1A67FDB70073EFE8 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = Q5VMM84URQ;
 					};
 					453586641A67FDB70073EFE8 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -214,6 +218,7 @@
 			files = (
 				453586581A67FDB70073EFE8 /* ViewController.swift in Sources */,
 				453586561A67FDB70073EFE8 /* AppDelegate.swift in Sources */,
+				45F449321A6949FE005163E2 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,7 +341,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Tipping/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -346,7 +353,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Tipping/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -405,6 +414,7 @@
 				453586711A67FDB70073EFE8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		453586721A67FDB70073EFE8 /* Build configuration list for PBXNativeTarget "TippingTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +423,7 @@
 				453586741A67FDB70073EFE8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
