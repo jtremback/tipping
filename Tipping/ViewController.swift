@@ -14,9 +14,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var billField: UITextField!
     @IBOutlet weak var tipLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var totalExplanationLabel: UILabel!
     @IBOutlet weak var numberGuestsLabel: UILabel!
     @IBOutlet weak var numberGuests: UIStepper!
-    @IBOutlet weak var totalExplanationLabel: UILabel!
+    @IBOutlet weak var numberGuestsBG: UIView!
+    @IBOutlet weak var splitExplanationLabel: UILabel!
+    @IBOutlet weak var splitLabel: UILabel!
 
     let defaults = NSUserDefaults.standardUserDefaults()
     let formatter = NSNumberFormatter()
@@ -54,26 +57,33 @@ class ViewController: UIViewController {
     }
     
     func recolor () {
-        if let cl: AnyObject = defaults.objectForKey("themeColors") {
-            colors = cl as [String: Int]
+        if let themeColors: AnyObject = defaults.objectForKey("themeColors") {
+            colors = themeColors as [String: Int]
         }
         
         tipControl.tintColor = UIColor(hex: colors["accent"]!)
-        billField.backgroundColor = UIColor(hex: colors["primary"]!)
+        billField.backgroundColor = UIColor(hex: colors["secondary"]!)
+        billField.textColor = UIColor(hex: colors["text"]!)
+        numberGuestsBG.backgroundColor = UIColor(hex: colors["secondary"]!)
+        tipLabel.textColor = UIColor(hex: colors["text"]!)
+        totalLabel.textColor = UIColor(hex: colors["text"]!)
+        
     }
     
     func recalc () {
         formatter.numberStyle = .CurrencyStyle
-        
+        formatter.locale = NSLocale(localeIdentifier: "uk_UA")
         let tipPercentage = Double(tipPercentages[tipControl.selectedSegmentIndex])
         
         let billAmount = (billField.text as NSString).doubleValue
         let tip = billAmount * (tipPercentage / 100.00)
-        let total = (billAmount + tip) / numberGuests.value
+        let total = billAmount + tip
+        let split = total / numberGuests.value
         
         numberGuestsLabel.text = "\(Int(numberGuests.value))"
         tipLabel.text = formatter.stringFromNumber(tip)
         totalLabel.text = formatter.stringFromNumber(total)
+        splitLabel.text = formatter.stringFromNumber(split)
     }
     
     @IBAction func tipControlChanged(sender: AnyObject) {
@@ -89,9 +99,9 @@ class ViewController: UIViewController {
     
     @IBAction func numberGuestsChanged(sender: AnyObject) {
         if numberGuests.value > 1 {
-            totalExplanationLabel.text = "Each Guest Pays"
+            splitExplanationLabel.text = "Each Guest Pays"
         } else {
-            totalExplanationLabel.text = "You Pay"
+            splitExplanationLabel.text = "You Pay"
         }
         
         recalc()
