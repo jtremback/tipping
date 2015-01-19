@@ -18,7 +18,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var totalExplanationLabel: UILabel!
     @IBOutlet weak var numberGuestsLabel: UILabel!
-    @IBOutlet weak var numberGuests: UIStepper!
+    @IBOutlet weak var numberGuestsExplanationLabel: UILabel!
+    @IBOutlet weak var numberGuests: UISlider!
     @IBOutlet weak var numberGuestsBG: UIView!
     @IBOutlet weak var splitExplanationLabel: UILabel!
     @IBOutlet weak var splitLabel: UILabel!
@@ -28,10 +29,14 @@ class ViewController: UIViewController {
     
     var tipPercentages = [18, 20, 22]
     var colors = ["primary": 0xFFFFFF, "secondary": 0xEFEFF4, "accent": 0x167EFB, "text": 0x000000]
+    let localeSet = [ "en_US", "en_GB", "de_DE", "ru_RU", "zh_Hans_CN" ]
+    var localeIndex = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        billField.becomeFirstResponder()
         
         if let selected: Int = defaults.integerForKey("selectedPercentage") as Int? {
             tipControl.selectedSegmentIndex = selected
@@ -47,6 +52,10 @@ class ViewController: UIViewController {
         
         for (index, tipPercentage) in enumerate(tipPercentages) {
             tipControl.setTitle("\(tipPercentage)%", forSegmentAtIndex: index)
+        }
+        
+        if let selected: Int = defaults.integerForKey("locale") as Int? {
+            localeIndex = selected
         }
         
         recalc()
@@ -67,30 +76,30 @@ class ViewController: UIViewController {
         tipControl.tintColor = UIColor(hex: colors["accent"]!)
         billField.backgroundColor = UIColor(hex: colors["secondary"]!)
         billField.textColor = UIColor(hex: colors["text"]!)
+        billField.tintColor = UIColor(hex: colors["accent"]!)
         billExplanationLabel.textColor = UIColor(hex: colors["text"]!)
         numberGuestsBG.backgroundColor = UIColor(hex: colors["secondary"]!)
         tipLabel.textColor = UIColor(hex: colors["text"]!)
         tipExplanationLabel.textColor = UIColor(hex: colors["text"]!)
         totalExplanationLabel.textColor = UIColor(hex: colors["text"]!)
         totalLabel.textColor = UIColor(hex: colors["text"]!)
+        splitLabel.textColor = UIColor(hex: colors["text"]!)
+        splitExplanationLabel.textColor = UIColor(hex: colors["text"]!)
+        numberGuestsLabel.textColor = UIColor(hex: colors["text"]!)
+        numberGuestsExplanationLabel.textColor = UIColor(hex: colors["text"]!)
+        numberGuests.tintColor = UIColor(hex: colors["accent"]!)
         
     }
-//    "zh_Hans_CN"
-//    "de_DE"
-//    "en_US"
-//    "en_GB"
-//    "ru_RU"
-//    "ko_KR"
+
     func recalc () {
         formatter.numberStyle = .CurrencyStyle
-        formatter.locale = NSLocale(localeIdentifier: "ko_KR")
+        formatter.locale = NSLocale(localeIdentifier: localeSet[localeIndex])
         let tipPercentage = Double(tipPercentages[tipControl.selectedSegmentIndex])
         
         let billAmount = (billField.text as NSString).doubleValue
         let tip = billAmount * (tipPercentage / 100.00)
         let total = billAmount + tip
-        let split = total / numberGuests.value
-        
+        let split = total / Double(Int(numberGuests.value))
         numberGuestsLabel.text = "\(Int(numberGuests.value))"
         tipLabel.text = formatter.stringFromNumber(tip)
         totalLabel.text = formatter.stringFromNumber(total)
