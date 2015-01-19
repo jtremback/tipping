@@ -73,6 +73,7 @@ class ViewController: UIViewController {
         }
         
         view.backgroundColor = UIColor(hex: colors["primary"]!)
+        
         tipControl.tintColor = UIColor(hex: colors["accent"]!)
         billField.backgroundColor = UIColor(hex: colors["secondary"]!)
         billField.textColor = UIColor(hex: colors["text"]!)
