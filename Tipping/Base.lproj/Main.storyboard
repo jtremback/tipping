@@ -83,13 +83,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vpG-ZV-JMh">
-                                <rect key="frame" x="152" y="101" width="17" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="30"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" id="198-Cu-2U7">
                                 <rect key="frame" x="16" y="321" width="152" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -152,6 +145,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="billExplanationLabel" destination="VgN-pA-NON" id="baG-vs-XBM"/>
                         <outlet property="billField" destination="cmk-iJ-O7G" id="gy4-26-kuM"/>
                         <outlet property="numberGuests" destination="Iqn-po-9Uq" id="2q6-O0-rjo"/>
                         <outlet property="numberGuestsBG" destination="198-Cu-2U7" id="1rk-Up-kdH"/>
@@ -159,6 +153,7 @@
                         <outlet property="splitExplanationLabel" destination="pD6-wt-U1c" id="5Cn-gg-PBw"/>
                         <outlet property="splitLabel" destination="nC0-g3-hjA" id="PV8-FD-I4C"/>
                         <outlet property="tipControl" destination="xoN-16-Kzb" id="8fh-uK-kUP"/>
+                        <outlet property="tipExplanationLabel" destination="z8h-fI-iFG" id="tda-so-cxL"/>
                         <outlet property="tipLabel" destination="bJk-g3-DIc" id="2bH-am-fpQ"/>
                         <outlet property="totalExplanationLabel" destination="4Lk-bS-Djo" id="5lV-bN-0Wr"/>
                         <outlet property="totalLabel" destination="Ta1-IX-jFU" id="Ubi-vG-Dj4"/>
@@ -181,6 +176,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="ltT-lX-mrM">
+                                <rect key="frame" x="16" y="168" width="288" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title=""/>
+                                    <segment title=""/>
+                                    <segment title=""/>
+                                </segments>
+                                <connections>
+                                    <action selector="tipControlChanged:" destination="rlI-d3-TOV" eventType="valueChanged" id="jqs-h2-HE8"/>
+                                </connections>
+                            </segmentedControl>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" id="tPx-He-Lqn">
                                 <rect key="frame" x="16" y="109" width="228" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -198,18 +205,140 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="ltT-lX-mrM">
-                                <rect key="frame" x="16" y="168" width="288" height="29"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select color theme" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wDd-ac-601">
+                                <rect key="frame" x="16" y="222" width="228" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select locale" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bWT-uA-euY">
+                                <rect key="frame" x="16" y="461" width="228" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" id="gu7-Og-Fkj" customClass="UIControl">
+                                <rect key="frame" x="16" y="251" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="jct-VR-V3A" customClass="UIControl">
+                                        <rect key="frame" x="10" y="10" width="60" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="color0Touched:" destination="rlI-d3-TOV" eventType="touchDown" id="Zrt-Cs-bJV"/>
+                                        </connections>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.90588235294117647" green="0.92549019607843142" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="color0Touched:" destination="rlI-d3-TOV" eventType="touchDown" id="I1f-mL-jSu"/>
+                                    <action selector="colorThemeTouched:" destination="rlI-d3-TOV" eventType="touchDown" id="bnc-xp-Tci"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" id="vyZ-VW-nze" customClass="UIControl">
+                                <rect key="frame" x="120" y="251" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="uyu-fb-A0t" customClass="UIControl">
+                                        <rect key="frame" x="10" y="10" width="60" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" red="0.12941176470588237" green="0.1803921568627451" blue="0.23921568627450981" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="color1Touched:" destination="rlI-d3-TOV" eventType="touchDown" id="A1T-KM-Zw6"/>
+                                        </connections>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.21568627450980393" green="0.30980392156862746" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="color1Touched:" destination="rlI-d3-TOV" eventType="touchDown" id="Pzk-Yf-FBM"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" id="Wtx-Ed-YSU" customClass="UIControl">
+                                <rect key="frame" x="224" y="251" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="LzG-v8-TQ6" customClass="UIControl">
+                                        <rect key="frame" x="10" y="10" width="60" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" red="0.79607843137254897" green="0.24313725490196078" blue="0.29019607843137257" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="color2Touched:" destination="rlI-d3-TOV" eventType="touchDown" id="U8V-44-ces"/>
+                                        </connections>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.90196078431372551" green="0.35294117647058826" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="color2Touched:" destination="rlI-d3-TOV" eventType="touchDown" id="WQc-W0-Mac"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" id="Wtm-8H-YUo" customClass="UIControl">
+                                <rect key="frame" x="16" y="354" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="fgV-J3-mtC" customClass="UIControl">
+                                        <rect key="frame" x="10" y="10" width="60" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" red="0.16470588235294117" green="0.63137254901960782" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="color3Touched:" destination="rlI-d3-TOV" eventType="touchDown" id="R5C-nN-Hu0"/>
+                                        </connections>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.20000000000000001" green="0.76470588235294112" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="color3Touched:" destination="rlI-d3-TOV" eventType="touchDown" id="t2O-Pt-W2K"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" id="AzK-lp-g8h" customClass="UIControl">
+                                <rect key="frame" x="120" y="354" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="YW6-dR-yrB" customClass="UIControl">
+                                        <rect key="frame" x="10" y="10" width="60" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" red="0.98039215686274506" green="0.58823529411764708" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="color4Touched:" destination="rlI-d3-TOV" eventType="touchDown" id="yvW-rT-iY9"/>
+                                        </connections>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.99215686274509807" green="0.76470588235294112" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="color4Touched:" destination="rlI-d3-TOV" eventType="touchDown" id="A97-Q1-gx8"/>
+                                </connections>
+                            </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="5Pm-fD-3mB">
+                                <rect key="frame" x="16" y="490" width="288" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
-                                    <segment title=""/>
-                                    <segment title=""/>
-                                    <segment title=""/>
+                                    <segment title="USA"/>
+                                    <segment title="UK"/>
+                                    <segment title="EU"/>
+                                    <segment title="Korea"/>
+                                    <segment title="China"/>
                                 </segments>
-                                <connections>
-                                    <action selector="tipControlChanged:" destination="rlI-d3-TOV" eventType="valueChanged" id="jqs-h2-HE8"/>
-                                </connections>
                             </segmentedControl>
+                            <view contentMode="scaleToFill" id="fdN-1Z-idX" customClass="UIControl">
+                                <rect key="frame" x="224" y="354" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="fgb-PV-Uoo" customClass="UIControl">
+                                        <rect key="frame" x="10" y="10" width="60" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" red="0.14509803921568629" green="0.42352941176470588" blue="0.6588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="color5Touched:" destination="rlI-d3-TOV" eventType="touchDown" id="DNG-BA-OhO"/>
+                                        </connections>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.18431372549019609" green="0.52156862745098043" blue="0.81176470588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="color5Touched:" destination="rlI-d3-TOV" eventType="touchDown" id="k8c-5u-lZD"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>

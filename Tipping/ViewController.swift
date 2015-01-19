@@ -12,7 +12,9 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var tipControl: UISegmentedControl!
     @IBOutlet weak var billField: UITextField!
+    @IBOutlet weak var billExplanationLabel: UILabel!
     @IBOutlet weak var tipLabel: UILabel!
+    @IBOutlet weak var tipExplanationLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var totalExplanationLabel: UILabel!
     @IBOutlet weak var numberGuestsLabel: UILabel!
@@ -61,18 +63,27 @@ class ViewController: UIViewController {
             colors = themeColors as [String: Int]
         }
         
+        view.backgroundColor = UIColor(hex: colors["primary"]!)
         tipControl.tintColor = UIColor(hex: colors["accent"]!)
         billField.backgroundColor = UIColor(hex: colors["secondary"]!)
         billField.textColor = UIColor(hex: colors["text"]!)
+        billExplanationLabel.textColor = UIColor(hex: colors["text"]!)
         numberGuestsBG.backgroundColor = UIColor(hex: colors["secondary"]!)
         tipLabel.textColor = UIColor(hex: colors["text"]!)
+        tipExplanationLabel.textColor = UIColor(hex: colors["text"]!)
+        totalExplanationLabel.textColor = UIColor(hex: colors["text"]!)
         totalLabel.textColor = UIColor(hex: colors["text"]!)
         
     }
-    
+//    "zh_Hans_CN"
+//    "de_DE"
+//    "en_US"
+//    "en_GB"
+//    "ru_RU"
+//    "ko_KR"
     func recalc () {
         formatter.numberStyle = .CurrencyStyle
-        formatter.locale = NSLocale(localeIdentifier: "uk_UA")
+        formatter.locale = NSLocale(localeIdentifier: "ko_KR")
         let tipPercentage = Double(tipPercentages[tipControl.selectedSegmentIndex])
         
         let billAmount = (billField.text as NSString).doubleValue
