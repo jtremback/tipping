@@ -8,6 +8,9 @@ Open up the app, enter a bill amount, tap on a tip percentage, and then adjust t
 
 Tap on "Settings" on the upper right corner to open the settings panel. Here you can configure the tip percentages that you would like to use, select a color scheme, and select a locale.
 
+![Screenshots](https://raw.githubusercontent.com/jtremback/tipping/master/screenshots.png)
+
+
 ### Thoughts:
 
 I found iOS development to be surprisingly easy, once I got past the strictness of the language (I come from JS). Apple has built a huge amount of framework code already, so you don't have to build much yourself. I have a feeling that stuff will get a bit more cumbersome once I start to go outside of the framework. Styling elements without CSS was already somewhat of a hassle, as every style needs to be applied with a method call. However, I could definitely learn to use the inheritance and object model a lot better, and this would probably reduce repition. Overall, I'm excited to learn more.
